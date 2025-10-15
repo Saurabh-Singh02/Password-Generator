@@ -1,95 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Password Generator</title>
-        <link rel="stylesheet" href="css/style.css">
-        <!-- fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@200;300;400;500;600;700;800;900&display=swap"
-            rel="stylesheet">
-    </head>
-    <body>
-        <!-- wrapper starts-->
-        <div class="wrapper">
-            <!-- container starts -->
-            <div class="container">
-                <h1 class="app-name">Password Generator</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Password Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <header>
+                <h1 class="app-name">
+                    <span class="material-icons">key</span>
+                    Secure Password Generator
+                </h1>
+                <p class="app-description">Create strong, random passwords to keep your accounts safe</p>
+            </header>
 
-                <!-- display container -->
-                <div class="display-container">
-                    <input type="text" readonly placeholder="Password"
-                        class="display" data-password-display>
-
-                    <button class="copy-btn" data-copy-btn>
-                        <p data-copy-msg class="copy-tooltip"></p>
-                        <svg class="copy-img" xmlns="http://www.w3.org/2000/svg"
-                            width="16" height="16" fill="currentColor"
-                            class="bi bi-c-square" viewBox="0 0 16 16">
-                            <path
-                                d="M8.146 4.992c-1.212 0-1.927.92-1.927 2.502v1.06c0 1.571.703 2.462 1.927 2.462.979 0 1.641-.586 1.729-1.418h1.295v.093c-.1 1.448-1.354 2.467-3.03 2.467-2.091 0-3.269-1.336-3.269-3.603V7.482c0-2.261 1.201-3.638 3.27-3.638 1.681 0 2.935 1.054 3.029 2.572v.088H9.875c-.088-.879-.768-1.512-1.729-1.512" />
-                            <path
-                                d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z" />
-                        </svg>
+            <!-- Password Display Section -->
+            <div class="display-container">
+                <div class="password-display-wrapper">
+                    <input type="text" readonly placeholder="Your password will appear here" class="display" data-password-display>
+                    <button class="refresh-btn" id="refreshButton" title="Generate new password">
+                        <span class="material-icons">refresh</span>
                     </button>
                 </div>
+                <button class="copy-btn" data-copy-btn title="Copy to clipboard">
+                    <span class="material-icons">content_copy</span>
+                    <p data-copy-msg class="copy-tooltip">Copied!</p>
+                </button>
+            </div>
 
-                <!-- input container -->
-                <div class="input-container">
-                    <!--password length section-->
+            <!-- Password Options -->
+            <div class="input-container">
+                <!-- Password Length Section -->
+                <div class="option-section">
                     <div class="length-container">
-                        <p>Password Length</p>
-                        <p data-length-display>0</p>
+                        <div class="option-header">
+                            <span class="material-icons">straighten</span>
+                            <h3>Password Length</h3>
+                        </div>
+                        <div class="length-value">
+                            <span data-length-display>10</span>
+                            <span class="characters">characters</span>
+                        </div>
                     </div>
+                    <input type="range" min="4" max="30" value="10" class="slider" data-length-slider>
+                </div>
 
-                    <!--slider-->
-                    <input type="range" min="1" max="20" class="slider" step="1"
-                        data-length-slider>
-
-                    <!-- checkboxes-->
+                <!-- Character Options -->
+                <div class="option-section">
+                    <div class="option-header">
+                        <span class="material-icons">checklist</span>
+                        <h3>Character Types</h3>
+                    </div>
                     <div class="checkbox-wrapper">
                         <div class="checkbox-container">
-                            <input type="checkbox" id="uppercaseCb">
-                            <label for="uppercaseCb">Includes Uppercase
-                                letters</label>
+                            <input type="checkbox" id="uppercaseCb" checked>
+                            <label for="uppercaseCb">
+                                <span class="material-icons">check_box</span>
+                                Uppercase Letters (A-Z)
+                            </label>
                         </div>
-
                         <div class="checkbox-container">
-                            <input type="checkbox" id="lowercaseCb">
-                            <label for="lowercaseCb">Includes Lowercase
-                                letters</label>
+                            <input type="checkbox" id="lowercaseCb" checked>
+                            <label for="lowercaseCb">
+                                <span class="material-icons">check_box</span>
+                                Lowercase Letters (a-z)
+                            </label>
                         </div>
-
                         <div class="checkbox-container">
-                            <input type="checkbox" id="numberCb">
-                            <label for="numberCb">Includes Numbers </label>
+                            <input type="checkbox" id="numberCb" checked>
+                            <label for="numberCb">
+                                <span class="material-icons">check_box</span>
+                                Numbers (0-9)
+                            </label>
                         </div>
-
                         <div class="checkbox-container">
                             <input type="checkbox" id="symbolCb">
-                            <label for="symbolCb">Includes Symbols </label>
+                            <label for="symbolCb">
+                                <span class="material-icons">check_box</span>
+                                Symbols (!@#$% etc.)
+                            </label>
                         </div>
                     </div>
-
-                    <!-- strength section-->
-                    <div class="strength-container">
-                        <p>Strength</p>
-                        <div data-indicator class="indicator"></div>
-                    </div>
-
-                    <!-- generate password-->
-                    <button id="generateButton">Generate Password</button>
                 </div>
-            </div>
-            <!-- container ends-->
-        </div>
-        <!-- wrapper ends -->
 
-        <!-- custom script -->
-        <script src="js/script.js"></script>
-    </body>
+                <!-- Password Strength -->
+                <div class="option-section">
+                    <div class="strength-container">
+                        <div class="option-header">
+                            <span class="material-icons">security</span>
+                            <h3>Password Strength</h3>
+                        </div>
+                        <div class="strength-display">
+                            <div class="strength-text" data-strength-text>Medium</div>
+                            <div class="strength-bar">
+                                <div data-indicator class="indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <button id="generateButton" class="generate-btn">
+                    <span class="material-icons">autorenew</span>
+                    Generate Password
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
